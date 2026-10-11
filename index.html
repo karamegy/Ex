@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>U-Shipper Logistics Services | Global Freight & Logistics Solutions</title>
-    <!-- FontAwesome for Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,8 +20,20 @@
                 <span><i class="fas fa-envelope"></i> CEO@u-shipper.org</span>
                 <span><i class="fas fa-globe"></i> GLA Membership ID: 866387</span>
             </div>
-            <div class="certifications-badge">
-                <span>ISO 9001</span> | <span>FIATA</span> | <span>IATA</span> | <span>GLA GLOBAL ALLIANCE</span>
+            <div class="top-bar-controls">
+                <div class="certifications-badge">
+                    <span>ISO 9001</span> | <span>FIATA</span> | <span>IATA</span>
+                </div>
+                <!-- Controls: Language & Theme Switchers -->
+                <div class="controls-wrapper">
+                    <button id="themeToggleBtn" class="theme-btn" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <select id="langSelect" class="lang-select">
+                        <option value="en">English</option>
+                        <option value="ar">العربية</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
@@ -31,15 +43,28 @@
         <div class="container nav-container">
             <a href="#" class="logo">
                 <span class="logo-main">U-Shipper</span>
-                <span class="logo-sub">logistics services</span>
+                <span class="logo-sub" data-i18n="logoSub">logistics services</span>
             </a>
             <nav class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">Who We Are</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#tracking" class="nav-link">Tracking</a>
-                <a href="#mission" class="nav-link">Mission & Vision</a>
-                <a href="#contact" class="nav-link btn-contact">Contact Us</a>
+                <a href="#home" class="nav-link active" data-i18n="navHome">Home</a>
+                <a href="#about" class="nav-link" data-i18n="navAbout">Who We Are</a>
+                <a href="#services" class="nav-link" data-i18n="navServices">Services</a>
+                <a href="#tracking" class="nav-link" data-i18n="navTracking">Tracking</a>
+                <a href="#mission" class="nav-link" data-i18n="navMission">Mission & Vision</a>
+                <a href="#contact" class="nav-link btn-contact" data-i18n="navContact">Contact Us</a>
+                
+                <!-- Auth Nav Items -->
+                <div class="auth-buttons" id="authNavButtons">
+                    <button class="btn btn-sm btn-outline-nav" onclick="openModal('loginModal')" data-i18n="login">Login</button>
+                    <button class="btn btn-sm btn-primary" onclick="openModal('registerModal')" data-i18n="register">Register</button>
+                </div>
+                
+                <!-- User Logged In State -->
+                <div class="user-profile-menu hidden" id="userNavMenu">
+                    <span id="userNameDisplay" class="user-name">User</span>
+                    <button class="btn btn-sm btn-admin hidden" id="adminPanelBtn" onclick="openAdminModal()" data-i18n="adminPanel">Admin Panel</button>
+                    <button class="btn btn-sm btn-danger" onclick="logout()" data-i18n="logout">Logout</button>
+                </div>
             </nav>
             <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
@@ -51,11 +76,11 @@
     <section id="home" class="hero">
         <div class="hero-overlay"></div>
         <div class="container hero-content">
-            <h1>WE DON'T JUST MOVE CARGO<br><span>WE MOVE BUSINESSES FORWARD.</span></h1>
-            <p>Complete logistics solutions – from sea and air freight to land transport and customs clearance, ensuring safe, timely, and transparent delivery worldwide.</p>
+            <h1 data-i18n="heroTitle">WE DON'T JUST MOVE CARGO<br><span>WE MOVE BUSINESSES FORWARD.</span></h1>
+            <p data-i18n="heroDesc">Complete logistics solutions – from sea and air freight to land transport and customs clearance, ensuring safe, timely, and transparent delivery worldwide.</p>
             <div class="hero-btns">
-                <a href="#services" class="btn btn-primary">Explore Services</a>
-                <a href="#contact" class="btn btn-outline">Get A Quote</a>
+                <a href="#services" class="btn btn-primary" data-i18n="exploreServices">Explore Services</a>
+                <a href="#contact" class="btn btn-outline" data-i18n="getQuote">Get A Quote</a>
             </div>
         </div>
     </section>
@@ -64,82 +89,54 @@
     <section id="about" class="about section-padding">
         <div class="container">
             <div class="section-title">
-                <h2>WHO WE ARE?</h2>
+                <h2 data-i18n="aboutTitle">WHO WE ARE?</h2>
                 <div class="underline"></div>
             </div>
             <div class="about-grid">
                 <div class="about-text">
-                    <p>We provide complete logistics solutions - from sea and air freight to land transport and customs clearance - ensuring that every shipment arrives safely, on time, and with full visibility.</p>
-                    <p>With strong international partnerships and exclusive agents in <strong>Morocco, China, UAE, Turkey, and Saudi Arabia</strong>, U-Shipper offers global reach with a local touch. Our commitment to quality, reliability, and transparency drives everything we do.</p>
-                    <div class="highlight-quote">
+                    <p data-i18n="aboutP1">We provide complete logistics solutions - from sea and air freight to land transport and customs clearance - ensuring that every shipment arrives safely, on time, and with full visibility.</p>
+                    <p data-i18n="aboutP2">With strong international partnerships and exclusive agents in Morocco, China, UAE, Turkey, and Saudi Arabia, U-Shipper offers global reach with a local touch.</p>
+                    <div class="highlight-quote" data-i18n="aboutQuote">
                         "We don't just move cargo we move businesses forward."
                     </div>
                 </div>
                 <div class="about-features">
                     <div class="feature-card">
                         <i class="fas fa-ship"></i>
-                        <h3>Global Network</h3>
-                        <p>Exclusive agency partnerships across major global trade hubs.</p>
+                        <div>
+                            <h3 data-i18n="feat1Title">Global Network</h3>
+                            <p data-i18n="feat1Desc">Exclusive agency partnerships across major global trade hubs.</p>
+                        </div>
                     </div>
                     <div class="feature-card">
                         <i class="fas fa-shield-alt"></i>
-                        <h3>ISO 9001 Certified</h3>
-                        <p>Adhering to highest international standards of quality management.</p>
+                        <div>
+                            <h3 data-i18n="feat2Title">ISO 9001 Certified</h3>
+                            <p data-i18n="feat2Desc">Adhering to highest international standards of quality management.</p>
+                        </div>
                     </div>
                     <div class="feature-card">
                         <i class="fas fa-clock"></i>
-                        <h3>24/7 Support</h3>
-                        <p>Dedicated professional team ensuring real-time updates and peace of mind.</p>
+                        <div>
+                            <h3 data-i18n="feat3Title">24/7 Support</h3>
+                            <p data-i18n="feat3Desc">Dedicated professional team ensuring real-time updates and peace of mind.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Dynamic Services Section -->
     <section id="services" class="services section-padding bg-light">
         <div class="container">
             <div class="section-title">
-                <h2>OUR SERVICES</h2>
+                <h2 data-i18n="ourServices">OUR SERVICES</h2>
                 <div class="underline"></div>
-                <p>Comprehensive, reliable, and cost-effective transport solutions tailored to your business.</p>
+                <p data-i18n="servicesDesc">Comprehensive, reliable, and cost-effective transport solutions tailored to your business.</p>
             </div>
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-ship"></i></div>
-                    <h3>SEA FREIGHT</h3>
-                    <p>FCL and LCL worldwide services, weekly sailings, reefer containers, break bulk, project cargo, and IMO-certified hazardous cargo handling.</p>
-                    <button class="btn-read-more" onclick="openServiceModal('Sea Freight')">Learn More</button>
-                </div>
-                <!-- Service 2 -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-plane"></i></div>
-                    <h3>AIR FREIGHT</h3>
-                    <p>Fast, secure airport-to-airport and door-to-door delivery, charter flight arrangements, temperature-controlled and DG certified cargo handling.</p>
-                    <button class="btn-read-more" onclick="openServiceModal('Air Freight')">Learn More</button>
-                </div>
-                <!-- Service 3 -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-truck"></i></div>
-                    <h3>LAND TRANSPORT</h3>
-                    <p>Domestic and international trucking across Egypt and beyond, 20ft/40ft containers, flatbed & low-bed trailers, TIR customs transit, and GPS tracking.</p>
-                    <button class="btn-read-more" onclick="openServiceModal('Land Transport')">Learn More</button>
-                </div>
-                <!-- Service 4 -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                    <h3>CUSTOMS CLEARANCE</h3>
-                    <p>Professional licensed brokerage at all Egyptian ports and global gateways, tariff classification, duty calculation, and free zone handling.</p>
-                    <button class="btn-read-more" onclick="openServiceModal('Customs Clearance')">Learn More</button>
-                </div>
-                <!-- Service 5 -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-boxes"></i></div>
-                    <h3>SPECIAL CARGO</h3>
-                    <p>Specialized handling, storage, and transportation for oversized equipment, hazardous materials, temperature-sensitive items, and complex project logistics.</p>
-                    <button class="btn-read-more" onclick="openServiceModal('Special Cargo')">Learn More</button>
-                </div>
+            <div class="services-grid" id="servicesGrid">
+                <!-- Rendered dynamically via JS -->
             </div>
         </div>
     </section>
@@ -148,13 +145,13 @@
     <section id="tracking" class="tracking section-padding">
         <div class="container">
             <div class="section-title">
-                <h2>TRACK YOUR SHIPMENT</h2>
+                <h2 data-i18n="trackTitle">TRACK YOUR SHIPMENT</h2>
                 <div class="underline"></div>
-                <p>Enter your tracking or Bill of Lading (BBL) number for real-time visibility.</p>
+                <p data-i18n="trackSub">Enter your tracking or Bill of Lading (BBL) number for real-time visibility.</p>
             </div>
             <div class="tracking-box">
                 <input type="text" id="trackingInput" placeholder="Enter Tracking Number (e.g., US-866387)...">
-                <button id="trackBtn" class="btn btn-primary">Track Cargo</button>
+                <button id="trackBtn" class="btn btn-primary" data-i18n="trackBtn">Track Cargo</button>
             </div>
             <div id="trackingResult" class="tracking-result hidden"></div>
         </div>
@@ -165,24 +162,24 @@
         <div class="container mv-grid">
             <div class="mv-card">
                 <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
-                <h3>Our Mission</h3>
-                <p>To empower global trade by delivering innovative, reliable, and cost-effective logistics solutions. We are committed to providing seamless transportation, transparent communication, and personalized customer support — ensuring every shipment moves safely, on time, and with complete peace of mind.</p>
+                <h3 data-i18n="missionTitle">Our Mission</h3>
+                <p data-i18n="missionDesc">To empower global trade by delivering innovative, reliable, and cost-effective logistics solutions. We are committed to providing seamless transportation, transparent communication, and personalized customer support.</p>
             </div>
             <div class="mv-card">
                 <div class="mv-icon"><i class="fas fa-eye"></i></div>
-                <h3>Our Vision</h3>
-                <p>To become a recognized global leader in logistics and transportation, connecting Egypt to the world through innovation, efficiency, and trust. We aim to make international trade simpler, faster, and more transparent, while strengthening Egypt's position as a regional logistics hub.</p>
+                <h3 data-i18n="visionTitle">Our Vision</h3>
+                <p data-i18n="visionDesc">To become a recognized global leader in logistics and transportation, connecting Egypt to the world through innovation, efficiency, and trust. We aim to make international trade simpler and faster.</p>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact & Order Submission Section -->
     <section id="contact" class="contact section-padding">
         <div class="container">
             <div class="section-title">
-                <h2>CONTACT US</h2>
+                <h2 data-i18n="contactTitle">CONTACT US & SUBMIT ORDER</h2>
                 <div class="underline"></div>
-                <p>Thank you for your trust. Reach out to our executive departments below.</p>
+                <p data-i18n="contactSub">Reach out to us or submit an inquiry directly to our team.</p>
             </div>
             <div class="contact-grid">
                 <div class="contact-info-cards">
@@ -211,12 +208,19 @@
                             <input type="email" id="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="subject" placeholder="Subject / Service Inquiry" required>
+                            <select id="serviceType" required>
+                                <option value="" disabled selected data-i18n="selectService">Select Service</option>
+                                <option value="Sea Freight">Sea Freight</option>
+                                <option value="Air Freight">Air Freight</option>
+                                <option value="Land Transport">Land Transport</option>
+                                <option value="Customs Clearance">Customs Clearance</option>
+                                <option value="Special Cargo">Special Cargo</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+                            <textarea id="message" rows="5" placeholder="Your Message or Shipment Details" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                        <button type="submit" class="btn btn-primary btn-block" data-i18n="sendMessage">Send Order / Message</button>
                     </form>
                 </div>
             </div>
@@ -228,8 +232,8 @@
         <div class="container footer-flex">
             <p>&copy; 2026 U-Shipper Logistics Services. All Rights Reserved. | Membership ID: 866387</p>
             <div class="footer-links">
-                <a href="www.u-shipper.org">www.u-shipper.org</a>
-                <a href="www.glafamily.com">www.glafamily.com</a>
+                <a href="https://www.u-shipper.org" target="_blank">www.u-shipper.org</a>
+                <a href="https://www.glafamily.com" target="_blank">www.glafamily.com</a>
             </div>
         </div>
     </footer>
@@ -239,7 +243,99 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeServiceModal()">&times;</span>
             <h2 id="modalTitle">Service Title</h2>
-            <p id="modalDescription">Detailed service description and operational capabilities...</p>
+            <p id="modalDescription">Detailed service description...</p>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
+            <h2 data-i18n="login">Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" placeholder="Email (Admin: admin@u-shipper.org)" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" placeholder="Password (Admin: admin123)" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" data-i18n="login">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('registerModal')">&times;</span>
+            <h2 data-i18n="register">Register</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <input type="text" id="regName" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="regEmail" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" data-i18n="register">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="modal hidden">
+        <div class="modal-content modal-large">
+            <span class="close-modal" onclick="closeModal('adminModal')">&times;</span>
+            <h2 data-i18n="adminTitle">Control Panel (Admin)</h2>
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="switchAdminTab('ordersTab')" data-i18n="tabOrders">Received Orders</button>
+                <button class="tab-btn" onclick="switchAdminTab('servicesTab')" data-i18n="tabServices">Manage Services</button>
+            </div>
+
+            <!-- Orders Tab -->
+            <div id="ordersTab" class="admin-tab-content active">
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Service</th>
+                                <th>Message</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Manage Services Tab -->
+            <div id="servicesTab" class="admin-tab-content">
+                <form id="addServiceForm" class="admin-inline-form">
+                    <input type="text" id="newServiceKey" placeholder="Service ID / Name" required>
+                    <input type="text" id="newServiceTitle" placeholder="Service Title" required>
+                    <input type="text" id="newServiceDesc" placeholder="Description" required>
+                    <button type="submit" class="btn btn-primary">+ Add Service</button>
+                </form>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="servicesTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
