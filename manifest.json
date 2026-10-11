@@ -1,0 +1,24 @@
+{
+  "short_name": "U-Shipper",
+  "name": "U-Shipper Logistics Services",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2972/2972531.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2972/2972531.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/Ex/index.html",
+  "background_color": "#0f2c59",
+  "theme_color": "#0f2c59",
+  "display": "standalone",
+  "orientation": "portrait",
+  "dir": "auto",
+  "lang": "en-US",
+  "description": "Global Freight & Logistics Solutions - U-Shipper Logistics Services"
+}
